@@ -57,7 +57,7 @@ const HeroSection = () => {
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="#services"
+              href="#about"
               className="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold border border-border bg-card text-foreground hover:bg-accent transition-all duration-300"
             >
               Learn More

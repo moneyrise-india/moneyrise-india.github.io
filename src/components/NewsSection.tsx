@@ -3,7 +3,7 @@ import { Newspaper } from "lucide-react";
 
 const NewsSection = () => {
   return (
-    <section className="section-padding bg-secondary/30">
+    <section id="blogs" className="section-padding bg-secondary/30">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

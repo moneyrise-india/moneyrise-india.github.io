@@ -31,7 +31,7 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section id="services" className="section-padding">
+    <section id="about" className="section-padding">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

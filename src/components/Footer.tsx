@@ -21,11 +21,11 @@ const Footer = () => {
           <div>
             <h4 className="font-bold font-display mb-4 text-sm uppercase tracking-wider opacity-60">Vehicles</h4>
             <ul className="space-y-2.5 text-sm opacity-80">
-              <li><a href="#" className="hover:text-primary transition-colors">2 Wheeler</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">3 Wheeler (Cargo)</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">3 Wheeler (Passenger)</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">4-Wheeler (Passenger)</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">4-Wheeler (Cargo)</a></li>
+              <li><a href="#vehicles" className="hover:text-primary transition-colors">2 Wheeler</a></li>
+              <li><a href="#vehicles" className="hover:text-primary transition-colors">3 Wheeler (Cargo)</a></li>
+              <li><a href="#vehicles" className="hover:text-primary transition-colors">3 Wheeler (Passenger)</a></li>
+              <li><a href="#vehicles" className="hover:text-primary transition-colors">4-Wheeler (Passenger)</a></li>
+              <li><a href="#vehicles" className="hover:text-primary transition-colors">4-Wheeler (Cargo)</a></li>
             </ul>
           </div>
 
@@ -33,17 +33,17 @@ const Footer = () => {
           <div>
             <h4 className="font-bold font-display mb-4 text-sm uppercase tracking-wider opacity-60">About Us</h4>
             <ul className="space-y-2.5 text-sm opacity-80">
-              <li><a href="#" className="hover:text-primary transition-colors">Team</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">EVRise Finance in News & Awards</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">SDG Commitment</a></li>
+              <li><a href="#about" className="hover:text-primary transition-colors">Team</a></li>
+              <li><a href="#blogs" className="hover:text-primary transition-colors">EVRise Finance in News & Awards</a></li>
+              <li><a href="#about" className="hover:text-primary transition-colors">SDG Commitment</a></li>
             </ul>
             <h4 className="font-bold font-display mb-4 text-sm uppercase tracking-wider opacity-60 mt-8">Blogs</h4>
             <ul className="space-y-2.5 text-sm opacity-80">
-              <li><a href="#" className="hover:text-primary transition-colors">EV Leasing vs. Buying</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">EV Leasing for Employees</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Why EV Fleet Leasing?</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Shared Mobility Models</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">The Role of EV Leasing</a></li>
+              <li><a href="#blogs" className="hover:text-primary transition-colors">EV Leasing vs. Buying</a></li>
+              <li><a href="#blogs" className="hover:text-primary transition-colors">EV Leasing for Employees</a></li>
+              <li><a href="#blogs" className="hover:text-primary transition-colors">Why EV Fleet Leasing?</a></li>
+              <li><a href="#blogs" className="hover:text-primary transition-colors">Shared Mobility Models</a></li>
+              <li><a href="#blogs" className="hover:text-primary transition-colors">The Role of EV Leasing</a></li>
             </ul>
           </div>
 

@@ -1,17 +1,14 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { Users, Target, Award, Leaf, Globe, Zap } from "lucide-react";
+import { Users, Target, Award } from "lucide-react";
 
 const teamMembers = [
   { name: "Leadership Team", role: "Driving EV adoption through accessible financing solutions across India" },
 ];
 
-const sdgCommitments = [
-  { icon: Leaf, title: "SDG 7 – Affordable & Clean Energy", description: "Promoting clean energy adoption through EV financing" },
-  { icon: Globe, title: "SDG 11 – Sustainable Cities", description: "Enabling cleaner urban mobility with electric commercial vehicles" },
-  { icon: Zap, title: "SDG 13 – Climate Action", description: "Reducing carbon emissions by financing the shift from ICE to EV fleets" },
-];
+
+
 
 const About = () => {
   return (
@@ -115,47 +112,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* SDG Commitment */}
-      <section className="section-padding bg-secondary/30">
-        <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
-              Our <span className="gradient-text">SDG Commitment</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              We align our business goals with the United Nations Sustainable Development Goals.
-            </p>
-          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {sdgCommitments.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="card-elevated text-center"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-primary text-primary-foreground flex items-center justify-center mb-6 mx-auto">
-                    <Icon size={24} />
-                  </div>
-                  <h3 className="text-lg font-bold font-display mb-3">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+
 
       <Footer />
     </div>

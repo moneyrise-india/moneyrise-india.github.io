@@ -1,38 +1,39 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "About Us", href: "#about" },
-    { label: "Blogs", href: "#blogs" },
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    { label: "Blogs", href: "/blogs" },
   ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="section-container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <span className="text-2xl font-bold font-display">
             <span className="gradient-text">ev</span>
             <span className="text-foreground">rise</span>
           </span>
           <span className="text-xs text-muted-foreground hidden sm:block">finance.com</span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={link.href}
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <a
             href="#apply"
@@ -63,14 +64,14 @@ const Navbar = () => {
           >
             <div className="section-container py-4 flex flex-col gap-3">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.href}
                   className="text-sm font-medium text-muted-foreground hover:text-foreground py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <a
                 href="#apply"

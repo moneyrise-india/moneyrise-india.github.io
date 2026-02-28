@@ -1,16 +1,36 @@
-import { motion } from "framer-motion";
-import { Images } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Images, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&h=400&fit=crop", alt: "Electric vehicle charging station" },
-  { src: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=400&fit=crop", alt: "Modern electric delivery van" },
-  { src: "https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=600&h=400&fit=crop", alt: "Electric fleet vehicles" },
-  { src: "https://images.unsplash.com/photo-1530685932526-48ec92998eaa?w=600&h=400&fit=crop", alt: "EV battery technology" },
-  { src: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&h=400&fit=crop", alt: "Electric mobility infrastructure" },
-  { src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&h=400&fit=crop", alt: "Green transport solutions" },
+  { src: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=900&h=500&fit=crop", alt: "Electric vehicle charging station" },
+  { src: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=900&h=500&fit=crop", alt: "Modern electric delivery van" },
+  { src: "https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=900&h=500&fit=crop", alt: "Electric fleet vehicles" },
+  { src: "https://images.unsplash.com/photo-1530685932526-48ec92998eaa?w=900&h=500&fit=crop", alt: "EV battery technology" },
+  { src: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=900&h=500&fit=crop", alt: "Electric mobility infrastructure" },
+  { src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=900&h=500&fit=crop", alt: "Green transport solutions" },
 ];
 
 const GallerySection = () => {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const paginate = useCallback((dir: number) => {
+    setDirection(dir);
+    setCurrent((prev) => (prev + dir + galleryImages.length) % galleryImages.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => paginate(1), 4000);
+    return () => clearInterval(timer);
+  }, [paginate]);
+
+  const variants = {
+    enter: (d: number) => ({ x: d > 0 ? 300 : -300, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (d: number) => ({ x: d > 0 ? -300 : 300, opacity: 0 }),
+  };
+
   return (
     <section className="section-padding">
       <div className="section-container">
@@ -33,33 +53,59 @@ const GallerySection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-          {galleryImages.map((image, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              className={`relative rounded-2xl overflow-hidden group cursor-pointer ${
-                index === 0 ? "md:row-span-2 md:col-span-1" : ""
-              }`}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                loading="lazy"
-                className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
-                  index === 0 ? "h-64 md:h-full" : "h-48 md:h-56"
+        {/* Slider */}
+        <div className="relative rounded-3xl overflow-hidden aspect-[16/8] md:aspect-[16/7] bg-muted">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.img
+              key={current}
+              src={galleryImages[current].src}
+              alt={galleryImages[current].alt}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </AnimatePresence>
+
+          {/* Overlay caption */}
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/60 to-transparent p-6 md:p-8">
+            <p className="text-background font-semibold font-display text-lg md:text-xl">
+              {galleryImages[current].alt}
+            </p>
+          </div>
+
+          {/* Arrows */}
+          <button
+            onClick={() => paginate(-1)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={() => paginate(1)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors"
+            aria-label="Next image"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          {/* Dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {galleryImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  i === current ? "bg-primary w-7" : "bg-background/60"
                 }`}
+                aria-label={`Go to image ${i + 1}`}
               />
-              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/30 transition-colors duration-300 flex items-end">
-                <p className="text-background text-sm font-medium p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  {image.alt}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

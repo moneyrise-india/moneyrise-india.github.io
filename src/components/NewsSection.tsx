@@ -7,7 +7,7 @@ const newsItems = [
     title: "EVRise Finance raises funding to expand EV commercial vehicle financing",
     excerpt: "The startup aims to democratize access to EV financing for fleet operators across tier-2 and tier-3 cities.",
     date: "2024",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=600&fit=crop",
     link: "#",
   },
   {
@@ -15,7 +15,7 @@ const newsItems = [
     title: "How EVRise is making commercial EV adoption affordable for India's last-mile delivery",
     excerpt: "With flexible tenure options and up to 90% financing, EVRise is bridging the gap between EV ambition and affordability.",
     date: "2024",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=600&fit=crop",
     link: "#",
   },
   {
@@ -23,7 +23,7 @@ const newsItems = [
     title: "Commercial EV financing startup EVRise targets 10,000 vehicles by 2025",
     excerpt: "The company partners with leading OEMs to provide end-to-end financing and fleet support for electric commercial vehicles.",
     date: "2024",
-    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=600&fit=crop",
     link: "#",
   },
 ];
@@ -65,7 +65,7 @@ const NewsSection = () => {
               className="card-elevated group cursor-pointer !p-0 overflow-hidden block"
             >
               {/* News Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative aspect-square overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}

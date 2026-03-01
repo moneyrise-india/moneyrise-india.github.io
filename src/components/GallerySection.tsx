@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Images, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=900&h=500&fit=crop", alt: "Electric vehicle charging station" },
-  { src: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=900&h=500&fit=crop", alt: "Modern electric delivery van" },
-  { src: "https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=900&h=500&fit=crop", alt: "Electric fleet vehicles" },
-  { src: "https://images.unsplash.com/photo-1530685932526-48ec92998eaa?w=900&h=500&fit=crop", alt: "EV battery technology" },
-  { src: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=900&h=500&fit=crop", alt: "Electric mobility infrastructure" },
-  { src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=900&h=500&fit=crop", alt: "Green transport solutions" },
+  { src: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&h=600&fit=crop", alt: "Electric vehicle charging station" },
+  { src: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&h=600&fit=crop", alt: "Modern electric delivery van" },
+  { src: "https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=600&h=600&fit=crop", alt: "Electric fleet vehicles" },
+  { src: "https://images.unsplash.com/photo-1530685932526-48ec92998eaa?w=600&h=600&fit=crop", alt: "EV battery technology" },
+  { src: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&h=600&fit=crop", alt: "Electric mobility infrastructure" },
+  { src: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&h=600&fit=crop", alt: "Green transport solutions" },
 ];
 
 const GallerySection = () => {
@@ -54,7 +54,7 @@ const GallerySection = () => {
         </motion.div>
 
         {/* Slider */}
-        <div className="relative rounded-3xl overflow-hidden aspect-[16/8] md:aspect-[16/7] bg-muted">
+        <div className="relative rounded-3xl overflow-hidden aspect-square max-w-xl mx-auto bg-muted">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.img
               key={current}

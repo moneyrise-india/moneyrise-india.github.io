@@ -1,34 +1,42 @@
-import { motion } from "framer-motion";
-import { Newspaper, ExternalLink } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Newspaper, ChevronLeft, ChevronRight } from "lucide-react";
 
 const newsItems = [
   {
-    source: "Economic Times",
-    title: "EVRise Finance raises funding to expand EV commercial vehicle financing",
-    excerpt: "The startup aims to democratize access to EV financing for fleet operators across tier-2 and tier-3 cities.",
-    date: "2024",
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=600&fit=crop",
     link: "#",
   },
   {
-    source: "YourStory",
-    title: "How EVRise is making commercial EV adoption affordable for India's last-mile delivery",
-    excerpt: "With flexible tenure options and up to 90% financing, EVRise is bridging the gap between EV ambition and affordability.",
-    date: "2024",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=600&fit=crop",
     link: "#",
   },
   {
-    source: "Mint",
-    title: "Commercial EV financing startup EVRise targets 10,000 vehicles by 2025",
-    excerpt: "The company partners with leading OEMs to provide end-to-end financing and fleet support for electric commercial vehicles.",
-    date: "2024",
     image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=600&fit=crop",
     link: "#",
   },
 ];
 
 const NewsSection = () => {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const paginate = useCallback((dir: number) => {
+    setDirection(dir);
+    setCurrent((prev) => (prev + dir + newsItems.length) % newsItems.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => paginate(1), 4000);
+    return () => clearInterval(timer);
+  }, [paginate]);
+
+  const variants = {
+    enter: (d: number) => ({ x: d > 0 ? 300 : -300, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (d: number) => ({ x: d > 0 ? -300 : 300, opacity: 0 }),
+  };
+
   return (
     <section id="blogs" className="section-padding bg-secondary/30">
       <div className="section-container">
@@ -51,51 +59,59 @@ const NewsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-          {newsItems.map((item, index) => (
+        {/* Square Image Slider */}
+        <div className="relative rounded-3xl overflow-hidden aspect-square max-w-xl mx-auto bg-muted">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.a
-              key={index}
-              href={item.link}
+              key={current}
+              href={newsItems[current].link}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="card-elevated group cursor-pointer !p-0 overflow-hidden block"
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="absolute inset-0 block cursor-pointer"
             >
-              {/* News Image */}
-              <div className="relative aspect-square overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-background/90 backdrop-blur-sm text-primary">
-                    {item.source}
-                  </span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs text-muted-foreground">{item.date}</span>
-                </div>
-                <h3 className="text-lg font-bold font-display mb-3 text-foreground group-hover:text-primary transition-colors leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  {item.excerpt}
-                </p>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all">
-                  Read Article <ExternalLink size={14} />
-                </span>
-              </div>
+              <img
+                src={newsItems[current].image}
+                alt="EVRise Finance news"
+                className="w-full h-full object-cover"
+              />
             </motion.a>
-          ))}
+          </AnimatePresence>
+
+          {/* Arrows */}
+          <button
+            onClick={() => paginate(-1)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors z-10"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={() => paginate(1)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors z-10"
+            aria-label="Next image"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          {/* Dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {newsItems.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  i === current ? "bg-primary w-7" : "bg-background/60"
+                }`}
+                aria-label={`Go to news ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

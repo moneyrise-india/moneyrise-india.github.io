@@ -12,12 +12,12 @@ const galleryImages = [
 ];
 
 const GallerySection = () => {
-  const [current, setCurrent] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
   const paginate = useCallback((dir: number) => {
     setDirection(dir);
-    setCurrent((prev) => (prev + dir + galleryImages.length) % galleryImages.length);
+    setStartIndex((prev) => (prev + dir + galleryImages.length) % galleryImages.length);
   }, []);
 
   useEffect(() => {
@@ -25,10 +25,14 @@ const GallerySection = () => {
     return () => clearInterval(timer);
   }, [paginate]);
 
+  const getVisibleImages = () => {
+    return [0, 1, 2].map((offset) => galleryImages[(startIndex + offset) % galleryImages.length]);
+  };
+
   const variants = {
-    enter: (d: number) => ({ x: d > 0 ? 300 : -300, opacity: 0 }),
+    enter: (d: number) => ({ x: d > 0 ? 100 : -100, opacity: 0 }),
     center: { x: 0, opacity: 1 },
-    exit: (d: number) => ({ x: d > 0 ? -300 : 300, opacity: 0 }),
+    exit: (d: number) => ({ x: d > 0 ? -100 : 100, opacity: 0 }),
   };
 
   return (
@@ -53,59 +57,61 @@ const GallerySection = () => {
           </p>
         </motion.div>
 
-        {/* Slider */}
-        <div className="relative rounded-3xl overflow-hidden aspect-square max-w-xl mx-auto bg-muted">
+        {/* 3-image slider */}
+        <div className="relative">
           <AnimatePresence initial={false} custom={direction} mode="wait">
-            <motion.img
-              key={current}
-              src={galleryImages[current].src}
-              alt={galleryImages[current].alt}
+            <motion.div
+              key={startIndex}
               custom={direction}
               variants={variants}
               initial="enter"
               animate="center"
               exit="exit"
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+              className="grid grid-cols-3 gap-4 lg:gap-6"
+            >
+              {getVisibleImages().map((img, i) => (
+                <div key={i} className="aspect-square rounded-2xl overflow-hidden bg-muted">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </motion.div>
           </AnimatePresence>
-
-          {/* Overlay caption */}
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-foreground/60 to-transparent p-6 md:p-8">
-            <p className="text-background font-semibold font-display text-lg md:text-xl">
-              {galleryImages[current].alt}
-            </p>
-          </div>
 
           {/* Arrows */}
           <button
             onClick={() => paginate(-1)}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors"
-            aria-label="Previous image"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-background shadow-md flex items-center justify-center text-foreground hover:bg-secondary transition-colors z-10"
+            aria-label="Previous"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={() => paginate(1)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/70 backdrop-blur-sm flex items-center justify-center text-foreground hover:bg-background transition-colors"
-            aria-label="Next image"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full bg-background shadow-md flex items-center justify-center text-foreground hover:bg-secondary transition-colors z-10"
+            aria-label="Next"
           >
             <ChevronRight size={20} />
           </button>
+        </div>
 
-          {/* Dots */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-            {galleryImages.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  i === current ? "bg-primary w-7" : "bg-background/60"
-                }`}
-                aria-label={`Go to image ${i + 1}`}
-              />
-            ))}
-          </div>
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-6">
+          {galleryImages.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setDirection(i > startIndex ? 1 : -1); setStartIndex(i); }}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                i === startIndex ? "bg-primary w-7" : "bg-muted-foreground/30"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

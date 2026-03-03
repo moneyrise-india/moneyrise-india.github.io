@@ -1,13 +1,18 @@
 import { motion } from "framer-motion";
-import { Bike, Truck, Car, Bus } from "lucide-react";
+import twoWheeler from "@/assets/vehicles/2-wheeler.jpg";
+import threeWheelerCargo from "@/assets/vehicles/3-wheeler-cargo.jpg";
+import threeWheelerPassenger from "@/assets/vehicles/3-wheeler-passenger.jpg";
+import fourWheelerPassenger from "@/assets/vehicles/4-wheeler-passenger.jpg";
+import fourWheelerBus from "@/assets/vehicles/4-wheeler-bus.jpg";
+import fourWheelerCargo from "@/assets/vehicles/4-wheeler-cargo.jpg";
 
 const vehicles = [
-  { icon: Bike, label: "2–Wheeler" },
-  { icon: Truck, label: "3–Wheeler (Cargo)" },
-  { icon: Car, label: "3–Wheeler (Passenger)" },
-  { icon: Car, label: "4–Wheeler (Passenger)" },
-  { icon: Bus, label: "4–Wheeler (Passenger)" },
-  { icon: Truck, label: "4–Wheeler (Cargo)" },
+  { image: twoWheeler, label: "2–Wheeler" },
+  { image: threeWheelerCargo, label: "3–Wheeler (Cargo)" },
+  { image: threeWheelerPassenger, label: "3–Wheeler (Passenger)" },
+  { image: fourWheelerPassenger, label: "4–Wheeler (Passenger)" },
+  { image: fourWheelerBus, label: "4–Wheeler (Passenger)" },
+  { image: fourWheelerCargo, label: "4–Wheeler (Cargo)" },
 ];
 
 const containerVariants = {
@@ -62,21 +67,22 @@ const VehiclesSection = () => {
           viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6"
         >
-          {vehicles.map((vehicle, index) => {
-            const Icon = vehicle.icon;
-            return (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="card-elevated flex flex-col items-center gap-4 text-center cursor-pointer group !p-6"
-              >
-                <div className="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                  <Icon size={28} />
-                </div>
-                <span className="text-sm font-semibold text-foreground">{vehicle.label}</span>
-              </motion.div>
-            );
-          })}
+          {vehicles.map((vehicle, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="card-elevated flex flex-col items-center gap-4 text-center cursor-pointer group !p-4"
+            >
+              <div className="w-full aspect-square rounded-xl overflow-hidden bg-secondary/50">
+                <img
+                  src={vehicle.image}
+                  alt={vehicle.label}
+                  className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <span className="text-sm font-semibold text-foreground">{vehicle.label}</span>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

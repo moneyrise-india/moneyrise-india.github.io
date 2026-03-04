@@ -35,7 +35,6 @@ const Footer = () => {
             <h4 className="font-bold font-display mb-4 text-sm uppercase tracking-wider opacity-60">About Us</h4>
             <ul className="space-y-2.5 text-sm opacity-80">
               <li><Link to="/about" className="hover:text-primary transition-colors">Team</Link></li>
-              <li><Link to="/about" className="hover:text-primary transition-colors">SDG Commitment</Link></li>
               <li><a href="#blogs" className="hover:text-primary transition-colors">EVRise Finance in News & Awards</a></li>
             </ul>
             <h4 className="font-bold font-display mb-4 text-sm uppercase tracking-wider opacity-60 mt-8">Blogs</h4>

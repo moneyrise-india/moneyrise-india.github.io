@@ -23,6 +23,7 @@ const Index = () => {
       <NewsSection />
       <FAQSection />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

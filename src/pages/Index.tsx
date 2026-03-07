@@ -8,6 +8,7 @@ import FAQSection from "@/components/FAQSection";
 import GallerySection from "@/components/GallerySection";
 import NewsSection from "@/components/NewsSection";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (

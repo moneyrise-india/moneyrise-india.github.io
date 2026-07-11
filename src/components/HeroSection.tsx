@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Zap, Shield, Clock, TrendingUp } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import WhatsAppLink from "./WhatsAppLink";
 
 const stats = [
   { icon: Shield, value: "90%", label: "Financing Available" },

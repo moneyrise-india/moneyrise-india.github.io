@@ -10,6 +10,8 @@ const WhatsAppLink = ({ children, className, onClick }: WhatsAppLinkProps) => {
   const phone = "919560143549";
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    onClick?.(e);
+
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );

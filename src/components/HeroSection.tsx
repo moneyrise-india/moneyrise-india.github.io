@@ -63,8 +63,8 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4 mb-14"
             >
-              <a href="#apply" className="btn-primary-gradient text-base gap-2 group">
-                Go Green
+              <a href="https://wa.me/919560143549" target="_blank" rel="noopener noreferrer" className="btn-primary-gradient text-base gap-2 group">
+                Apply Now
                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </a>
               <a
@@ -123,7 +123,7 @@ const HeroSection = () => {
                   <p className="font-semibold text-sm text-foreground">Up to 60 Months</p>
                 </div>
               </div>
-              <a href="#apply" className="btn-primary-gradient w-full text-sm mt-6 !py-3 gap-2 group">
+              <a href="https://wa.me/919560143549" target="_blank" rel="noopener noreferrer" className="btn-primary-gradient w-full text-sm mt-6 !py-3 gap-2 group">
                 Apply Now <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
             </div>

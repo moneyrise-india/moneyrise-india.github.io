@@ -3,9 +3,6 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Users, Target, Award } from "lucide-react";
 
-const teamMembers = [
-  { name: "Leadership Team", role: "Driving EV adoption through accessible financing solutions across India" },
-];
 
 
 
@@ -76,41 +73,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="section-padding">
-        <div className="section-container text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
-              Meet the <span className="gradient-text">Team</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              {teamMembers[0].role}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="card-elevated max-w-2xl mx-auto text-center"
-          >
-            <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mx-auto mb-6">
-              <Users size={32} className="text-primary" />
-            </div>
-            <h3 className="text-xl font-bold font-display mb-3">Experienced Leadership</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Our team brings together deep expertise in financial services, electric mobility, and technology to create the best financing experience for commercial EV operators across India.
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
 
 

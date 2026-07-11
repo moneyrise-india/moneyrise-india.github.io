@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import WhatsAppLink from "./WhatsAppLink";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,14 +36,9 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <a
-            href="https://wa.me/919560143549"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary-gradient text-sm !py-2.5 !px-6 !rounded-lg"
-          >
+          <WhatsAppLink className="btn-primary-gradient text-sm !py-2.5 !px-6 !rounded-lg">
             Apply Now
-          </a>
+          </WhatsAppLink>
         </div>
 
         {/* Mobile Toggle */}
@@ -75,15 +71,12 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <a
-                href="https://wa.me/919560143549"
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppLink
                 className="btn-primary-gradient text-sm !py-2.5 text-center !rounded-lg mt-2"
                 onClick={() => setIsOpen(false)}
               >
                 Apply Now
-              </a>
+              </WhatsAppLink>
             </div>
           </motion.div>
         )}

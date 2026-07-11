@@ -64,10 +64,10 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4 mb-14"
             >
-              <a href="https://wa.me/919560143549" target="_blank" rel="noopener noreferrer" className="btn-primary-gradient text-base gap-2 group">
+              <WhatsAppLink className="btn-primary-gradient text-base gap-2 group">
                 Apply Now
                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </a>
+              </WhatsAppLink>
               <a
                 href="#about"
                 className="inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold border border-border bg-card/80 backdrop-blur-sm text-foreground hover:bg-accent transition-all duration-300"
@@ -124,9 +124,9 @@ const HeroSection = () => {
                   <p className="font-semibold text-sm text-foreground">Up to 60 Months</p>
                 </div>
               </div>
-              <a href="https://wa.me/919560143549" target="_blank" rel="noopener noreferrer" className="btn-primary-gradient w-full text-sm mt-6 !py-3 gap-2 group">
+              <WhatsAppLink className="btn-primary-gradient w-full text-sm mt-6 !py-3 gap-2 group">
                 Apply Now <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </a>
+              </WhatsAppLink>
             </div>
           </motion.div>
         </div>

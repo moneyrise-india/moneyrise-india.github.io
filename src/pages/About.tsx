@@ -3,9 +3,6 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Users, Target, Award } from "lucide-react";
 
-const teamMembers = [
-  { name: "Leadership Team", role: "Driving EV adoption through accessible financing solutions across India" },
-];
 
 
 

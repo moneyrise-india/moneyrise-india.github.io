@@ -36,7 +36,9 @@ const Navbar = () => {
             </Link>
           ))}
           <a
-            href="#apply"
+            href="https://wa.me/919560143549"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-primary-gradient text-sm !py-2.5 !px-6 !rounded-lg"
           >
             Apply Now
@@ -74,7 +76,9 @@ const Navbar = () => {
                 </Link>
               ))}
               <a
-                href="#apply"
+                href="https://wa.me/919560143549"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary-gradient text-sm !py-2.5 text-center !rounded-lg mt-2"
                 onClick={() => setIsOpen(false)}
               >

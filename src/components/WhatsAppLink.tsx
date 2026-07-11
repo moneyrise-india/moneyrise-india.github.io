@@ -7,30 +7,12 @@ interface WhatsAppLinkProps {
 }
 
 const WhatsAppLink = ({ children, className, onClick }: WhatsAppLinkProps) => {
-  const phone = "919560143549";
-
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    onClick?.(e);
-
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
-
-    if (!isMobile) {
-      e.preventDefault();
-      window.open(
-        `https://web.whatsapp.com/send?phone=${phone}`,
-        "_blank",
-        "noopener,noreferrer"
-      );
-    }
-    // On mobile, let the default wa.me link trigger the WhatsApp app.
-  };
-
   return (
     <a
-      href={`https://wa.me/${phone}`}
-      onClick={handleClick}
+      href="https://wa.me/919560143549"
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={onClick}
       className={className}
     >
       {children}

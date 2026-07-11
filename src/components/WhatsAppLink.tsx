@@ -1,11 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode, MouseEventHandler } from "react";
 
 interface WhatsAppLinkProps {
   children: ReactNode;
   className?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }
 
-const WhatsAppLink = ({ children, className }: WhatsAppLinkProps) => {
+const WhatsAppLink = ({ children, className, onClick }: WhatsAppLinkProps) => {
   const phone = "919560143549";
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {

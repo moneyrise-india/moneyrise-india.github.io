@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import type { MouseEvent } from "react";
 
 const WHATSAPP_PHONE = "919560143549";
 const WHATSAPP_APP_URL = `whatsapp://send?phone=${WHATSAPP_PHONE}`;
@@ -8,7 +9,7 @@ const isMobileDevice = () =>
   /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 const WhatsAppButton = () => {
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
     if (isMobileDevice()) {

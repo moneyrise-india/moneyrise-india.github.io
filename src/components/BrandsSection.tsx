@@ -22,7 +22,7 @@ const BrandsSection = () => {
           {[...brands, ...brands, ...brands].map((brand, index) => (
             <div
               key={index}
-              className="flex-shrink-0 mx-8 md:mx-12 flex items-center justify-center w-32 h-16 md:w-40 md:h-20 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+              className="flex-shrink-0 mx-10 md:mx-16 flex items-center justify-center w-40 h-20 md:w-56 md:h-28 lg:w-64 lg:h-32 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
             >
               <img
                 src={brand.image}
